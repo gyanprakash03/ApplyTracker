@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  Applied
+  Interview
+  Offer
+  Rejected
+  Ghosted
+}
+
+enum JobType {
+  FullTime
+  PartTime
+  Internship
+  Contract
+  Freelance
+}
+
+model User {
+  id           String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clerkUserId  String        @unique
+  email        String?       @unique
+  firstName    String?
+  lastName     String?
+  applications Application[]
+  companies    Company[]
+
+  @@map("users")
+}
+
+model Application {
+  id          Int       @id @default(autoincrement())
+  company     String
+  role        String?
+  status      Status
+  jobType     JobType?
+  appliedDate DateTime  @default(now())
+  notes       String?
+  jobUrl      String
+  linkedinUrl String?
+  deadline    DateTime?
+  location    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userId      String
+  user        User      @relation(fields: [userId], references: [clerkUserId])
+
+  @@index([userId])
+  @@index([status])
+}
+
+
+model Company {
+  id          Int      @id @default(autoincrement())
+  name        String
+  about       String?
+  careerUrl   String?
+  linkedinUrl String?
+  country     String?
+  createdAt   DateTime @default(now())
+  userId      String
+  user        User     @relation(fields: [userId], references: [clerkUserId])
+}
