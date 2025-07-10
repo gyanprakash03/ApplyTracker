@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ApplyTracker
+
+A full-stack job application and company tracker. Add, search, and manage job applications and target companies, with AI-powered company info enrichment.
+
+## Features
+
+- **Job Application Tracking:** Add, edit, search, and manage your job applications.
+- **Company Wishlist:** Maintain a list of companies you want to target, with their career and LinkedIn pages.
+- **AI-Powered Enrichment:** Company info (about, career page, LinkedIn, country) is auto-filled using the Gemini API.
+- **Modern UI:** Responsive dashboard with search, filters, and modals.
+- **Authentication:** Secure user management with Clerk.
+- **Database:** Uses PostgreSQL (Neon) and Prisma ORM.
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) (App Router)
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL (Neon)](https://neon.tech/)
+- [Clerk](https://clerk.com/) (Authentication)
+- [Google Gemini API](https://ai.google.dev/)
+- [shadcn/ui](https://ui.shadcn.com/) (UI components)
+- [React](https://react.dev/)
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repo:**
+   ```sh
+   git clone https://github.com/yourusername/applytracker.git
+   cd applytracker
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Set up environment variables:**
+    ```env
+    DATABASE_URL=
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+    CLERK_SECRET_KEY=
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    GEMINI_API_KEY=
+    ```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+5. **Set up the database:**
+   ```sh
+   npx prisma migrate dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. **Run the development server:**
+   ```sh
+   npm run dev
+   ```
 
-## Learn More
+7. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/app` — Next.js app directory (pages, components, modals)
+- `/actions` — Server actions (CRUD, AI, etc.)
+- `/components` — Shared UI components
+- `/prisma` — Prisma schema and migrations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**Made with ❤️ by Gyan Prakash**
